@@ -53,18 +53,12 @@ public class Reach extends Check {
 					
 					if(finaldist == -1.0D) {
 						finaldist = dist;
-					}else{
-						if(finaldist > dist) {
-							finaldist = dist;
-						}
+					}else if(finaldist > dist) {
+						finaldist = dist;
 					}
 				}
-				if(pData.lastMove > 0){
-					finaldist -= 0.052D;
-				}
-				if(pData.isSneaking == 2) {
-					finaldist -= 0.139D;
-				}
+				if(pData.lastMove > 0) finaldist -= 0.052D;
+				if(pData.isSneaking == 2) finaldist -= 0.139D;
 				if(finaldist > 3.000001D) {
 					DecimalFormat df = new DecimalFormat("#.####");
 					alert(player, "Reach", null, df.format(finaldist) + " Blocks");
