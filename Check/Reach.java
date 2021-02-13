@@ -30,34 +30,27 @@ public class Reach extends Check {
 				double selfY = pData.yHead;
 				double selfZ = pData.z;
 				for(int t=0; t<data.x.size(); t++) {
+					//could create an AxisAlignedBB
 					double maxX = data.x.get(t) + (double)0.4f;
 					double maxY = data.y.get(t) + (double)1.9f;
 					double maxZ = data.z.get(t) + (double)0.4f;
 					double minX = data.x.get(t) - (double)0.4f;
 					double minY = data.y.get(t) - (double)0.1f;
 					double minZ = data.z.get(t) - (double)0.4f;
+					
 					double closestX = 0;
 					double closestY = 0;
 					double closestZ = 0;
-					if(selfX < minX) {
-						closestX = Math.abs(selfX - minX);
-					}
-					if(selfX > maxX) {
-						closestX = Math.abs(selfX - maxX);
-					}
-					if(selfY < minY) {
-						closestY = Math.abs(selfY - minY);
-					}
-					if(selfY > maxY) {
-						closestY = Math.abs(selfY - maxY);
-					}
-					if(selfZ < minZ) {
-						closestZ = Math.abs(selfZ - minZ);
-					}
-					if(selfZ > maxZ) {
-						closestZ = Math.abs(selfZ - maxZ);
-					}
+					
+					//Gets the closest distance from the player's head location to the outside of the hitbox
+					if(selfX < minX) closestX = Math.abs(selfX - minX);
+					if(selfX > maxX) closestX = Math.abs(selfX - maxX);
+					if(selfY < minY) closestY = Math.abs(selfY - minY);
+					if(selfY > maxY) closestY = Math.abs(selfY - maxY);
+					if(selfZ < minZ) closestZ = Math.abs(selfZ - minZ);
+					if(selfZ > maxZ) closestZ = Math.abs(selfZ - maxZ);
 					double dist = Math.sqrt(closestX * closestX + closestY * closestY + closestZ * closestZ);
+					
 					if(finaldist == -1.0D) {
 						finaldist = dist;
 					}else{
@@ -67,10 +60,10 @@ public class Reach extends Check {
 					}
 				}
 				if(pData.lastMove > 0){
-					finaldist -= 0.03D;
+					finaldist -= 0.052D;
 				}
 				if(pData.isSneaking == 2) {
-					finaldist -= 0.08D;
+					finaldist -= 0.139D;
 				}
 				if(finaldist > 3.000001D) {
 					DecimalFormat df = new DecimalFormat("#.####");
